@@ -21,7 +21,7 @@ DataDir    = 'out_data/';
 
 % Directory to store brainstorm database
 % BrainstormDbDir = '/media/data/guiomar/brainstorm_db';
-% BrainstormDbDir = 'brainstorm_db/';
+BrainstormDbDir = 'brainstorm_db/';
 
 %% Parameters
 ProtocolName = 'Protocol02'; % The protocol name has to be a valid folder name (no spaces, no weird characters...)
@@ -36,9 +36,9 @@ disp(['1) Start Brainstorm on server mode']);
 % end
 
 % Set Brainstorm database directory
-% bst_set('BrainstormDbDir',BrainstormDbDir)
+ bst_set('BrainstormDbDir',BrainstormDbDir)
 % BrainstormDbDir = gui_brainstorm('SetDatabaseFolder'); % interactive
-BrainstormDbDir = bst_get('BrainstormDbDir');
+% BrainstormDbDir = bst_get('BrainstormDbDir');
 
 %% CREATE PROTOCOL 
 disp(['2) Create protocol']);
@@ -100,19 +100,31 @@ disp(['1) Import MEG file']);
 
 sFiles0 = [];
 
+% ** CTF **
+% % % Process: Create link to raw file    
+% % sFiles = bst_process('CallProcess', 'process_import_data_raw', ...
+% %     sFiles0, [], ...
+% %     'subjectname', SubjectName, ...
+% %     'datafile', {sFilesMEG, 'CTF'}, ...
+% %     'channelreplace', 1, ...
+% %     'channelalign', 1);
+% % 
+% % %%%% CONFIG
+% % % Process: Convert to continuous (CTF): Continuous
+% % bst_process('CallProcess', 'process_ctf_convert', ...
+% %     sFiles, [], ...
+% %     'rectype', 2);  % Continuous
+% % 
+
+% ** FIF **
+
 % Process: Create link to raw file    
 sFiles = bst_process('CallProcess', 'process_import_data_raw', ...
     sFiles0, [], ...
     'subjectname', SubjectName, ...
-    'datafile', {sFilesMEG, 'CTF'}, ...
+    'datafile', {sFilesMEG, 'FIF'}, ...
     'channelreplace', 1, ...
     'channelalign', 1);
-
-%%%% CONFIG
-% Process: Convert to continuous (CTF): Continuous
-bst_process('CallProcess', 'process_ctf_convert', ...
-    sFiles, [], ...
-    'rectype', 2);  % Continuous
 
 % % %%%% IS THIS DONE AUTOMATICALLY NOW??
 % % % Process: Refine registration
