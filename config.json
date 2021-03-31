@@ -1,5 +1,5 @@
 {
     "output": "/Users/guiomar/Projects/ds000247/derivatives/freesurfer/sub-0002/ses-mri/anat",
-    "ctf": "/Users/guiomar/Projects/ds000246/sub-0001/meg/sub-0001_task-AEF_run-01_meg.ds"
+    "fif": "/Users/guiomar/data/meg.fif"
 
 }
