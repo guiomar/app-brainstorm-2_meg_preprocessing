@@ -24,7 +24,7 @@ DataDir    = 'out_data/';
 BrainstormDbDir = 'brainstorm_db/';
 
 %% Parameters
-ProtocolName = 'Protocol02'; % The protocol name has to be a valid folder name (no spaces, no weird characters...)
+ProtocolName = 'Protocol03'; % The protocol name has to be a valid folder name (no spaces, no weird characters...)
 SubjectName = 'Subject01';
 
 %% START BRAINSTORM
@@ -36,7 +36,7 @@ disp(['1) Brainstorm should be started on server mode']);
 % end
 
 % Set Brainstorm database directory
-bst_set('BrainstormDbDir',BrainstormDbDir)
+% bst_set('BrainstormDbDir',BrainstormDbDir)
 % BrainstormDbDir = gui_brainstorm('SetDatabaseFolder'); % interactive
 % BrainstormDbDir = bst_get('BrainstormDbDir');
 
