@@ -15,6 +15,7 @@ mkdir -p brainstorm_db
 # Run MatLab code local
 # matlab -nodisplay -r main
 # ./brainstorm3.command /usr/local/MATLAB/MATLAB_Runtime/v98/ main.m
+# ./brainstorm3.command /Applications/MATLAB_R2018b.app/bin/matlab main.m local
 
 singularity run -e docker://brainlife/brainstorm:3_210303 main.m local
 # singularity exec -e -B `pwd`:$HOME docker://brainlife/brainstorm:3_210303 main.m local
