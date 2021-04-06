@@ -15,10 +15,10 @@ config = jsondecode(fileread('config.json'));
 %% Some paths
 
 % Directory with the segmented anatomy (e.g. freesufer output)
-AnatDir1 = [fullfile(config.output)];
-disp(AnatDir1)
-AnatDir = [fullfile(config.freesurfer)];
-disp(AnatDir)
+%AnatDir1 = [fullfile(config.output)];
+%disp(AnatDir1)
+%AnatDir = [fullfile(config.freesurfer)];
+%disp(AnatDir)
 
 % Directory to store results
 ReportsDir = 'out_dir/';
@@ -105,7 +105,7 @@ lowpass = 0; % 0: no filter
 win_length = 10; % sec 2
 win_overlap = 0; % percentage 50
 
-sFilesMEG = fullfile(config.ctf);
+sFilesMEG = fullfile(config.fif);
 % =========================================================================
 
 %% ==== 1) Import MEG files =======================================
