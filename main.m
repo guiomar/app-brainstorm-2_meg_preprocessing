@@ -15,7 +15,10 @@ config = jsondecode(fileread('config.json'));
 %% Some paths
 
 % Directory with the segmented anatomy (e.g. freesufer output)
-AnatDir = [fullfile(config.output)];
+AnatDir1 = [fullfile(config.output)];
+disp(AnatDir1)
+AnatDir = [fullfile(config.freesurfer)];
+disp(AnatDir)
 
 % Directory to store results
 ReportsDir = 'out_dir/';
