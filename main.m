@@ -36,9 +36,14 @@ disp(['1) Brainstorm should be started on server mode']);
 % end
 
 % Set Brainstorm database directory
-% bst_set('BrainstormDbDir',BrainstormDbDir)
-% BrainstormDbDir = gui_brainstorm('SetDatabaseFolder'); % interactive
-% BrainstormDbDir = bst_get('BrainstormDbDir');
+bst_set('BrainstormDbDir',BrainstormDbDir) % FULL PATH
+disp(bst_get('BrainstormDbDir'));
+
+% Tutorial 1
+disp(bst_get('BrainstormUserDir')); % HOME/.brainstom (operating system)
+disp(getenv('HOME'));
+disp(char(java.lang.System.getProperty('user.home')));
+            
 
 %% CREATE PROTOCOL 
 disp(['2) Create protocol']);
