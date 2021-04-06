@@ -6,6 +6,8 @@
 %
 % Indiana University
 
+disp(['0) My script has started']);
+
 %% Load config.json
 % Load inputs from config.json
 config = jsondecode(fileread('config.json'));
