@@ -10,16 +10,17 @@
 %
 % Indiana University
 
-%clc; close all; clear;
+% clc; close all; clear;
 
 disp(['0) My script has started']);
 
-%% Load config.json
+%% Load Brainlife configuration file: config.json
 
 % Load inputs from config.json
 config = jsondecode(fileread('config.json'));
 
-%% Some paths
+
+%% Key paths
 
 % Directory to store results
 ReportsDir = 'out_dir/';
@@ -28,25 +29,28 @@ DataDir    = 'out_data/';
 % Directory to store brainstorm database
 BrainstormDbDir = [pwd, '/brainstorm_db/']; % Full path
 
+
 %% Parameters
 
-ProtocolName = 'Protocol01'; % The protocol name has to be a valid folder name (no spaces, no weird characters...)
+ProtocolName = 'Protocol01'; % Needs to be a valid folder name (no spaces, no weird characters, etc)
 SubjectName = 'Subject01';
 
-% Frequencies to filter with the noth (power line 60Hz and harmonics)
+% NOTCH FILTER
+% Frequencies to filter with the noth (e.g. power line 60Hz and harmonics)
 freqs_notch = [60:60:60];
 
-% Filters
+% LOW AND HIGH PASS FILTER
 highpass = 0.3;
 lowpass = 0; % 0: no filter
 
+% PSD
 % Window length and overlap for PSD Welch method
 win_length = 10; % sec 2
 win_overlap = 0; % percentage 50
 
 
 %% START BRAINSTORM
-disp(['1) Brainstorm should be started on server mode']);
+disp(['1) Brainstorm started on server mode']);
 
 % Set Brainstorm database directory
 bst_set('BrainstormDbDir',BrainstormDbDir) 
@@ -56,7 +60,10 @@ disp(['BrainstormDbDir:', bst_get('BrainstormDbDir')]);
 disp(['BrainstormUserDir:', bst_get('BrainstormUserDir')]); % HOME/.brainstom (operating system)
 disp(['HOME env:', getenv('HOME')]);
 disp(['HOME java:', char(java.lang.System.getProperty('user.home'))]);
-            
+
+% Reset colormaps
+bst_colormaps('RestoreDefaults', 'meg');
+
 
 %% CREATE PROTOCOL 
 disp(['2) Create protocol']);
@@ -78,8 +85,7 @@ disp(['- Create new protocol']);
 UseDefaultAnat = 1; 
 UseDefaultChannel = 0;
 gui_brainstorm('CreateProtocol', ProtocolName, UseDefaultAnat, UseDefaultChannel);
-% Reset colormaps
-bst_colormaps('RestoreDefaults', 'meg');
+
 
 disp(['Protocol created!']);
 
