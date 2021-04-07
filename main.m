@@ -10,29 +10,23 @@
 %
 % Indiana University
 
-% clc; close all; clear;
-
 disp(['0) My script has started']);
 
-%% Load Brainlife configuration file: config.json
-
-% Load inputs from config.json
-config = jsondecode(fileread('config.json'));
-
-
 %% Key paths
-
 % Directory to store results
 ReportsDir = 'out_dir/';
 DataDir    = 'out_data/';
-
 % Directory to store brainstorm database
 BrainstormDbDir = [pwd, '/brainstorm_db/']; % Full path
 
-
 %% Parameters
+% Load Brainlife configuration file: config.json
+config = jsondecode(fileread('config.json'));
 
-ProtocolName = 'Protocol01'; % Needs to be a valid folder name (no spaces, no weird characters, etc)
+% Path to the data
+sFilesMEG = fullfile(config.fif);
+
+ProtocolName = 'Protocol02'; % Needs to be a valid folder name (no spaces, no weird characters, etc)
 SubjectName = 'Subject01';
 
 % NOTCH FILTER
@@ -50,34 +44,35 @@ win_overlap = 0; % percentage 50
 
 
 %% START BRAINSTORM
-disp(['1) Brainstorm started on server mode']);
+disp(['0) Brainstorm started on server mode']);
+
+delete([bst_get('BrainstormUserDir'),'/brainstorm.mat']);
 
 % Set Brainstorm database directory
 bst_set('BrainstormDbDir',BrainstormDbDir) 
+% Reset colormaps
+bst_colormaps('RestoreDefaults', 'meg');
 
+%%%%%%%%
 % See Tutorial 1
 disp(['BrainstormDbDir:', bst_get('BrainstormDbDir')]);
 disp(['BrainstormUserDir:', bst_get('BrainstormUserDir')]); % HOME/.brainstom (operating system)
 disp(['HOME env:', getenv('HOME')]);
 disp(['HOME java:', char(java.lang.System.getProperty('user.home'))]);
-
-% Reset colormaps
-bst_colormaps('RestoreDefaults', 'meg');
+%%%%%%%%
 
 
 %% CREATE PROTOCOL 
-disp(['2) Create protocol']);
+disp(['0) Create protocol']);
 
 % Find existing protocol
 iProtocol = bst_get('Protocol', ProtocolName);
-disp(['iProtocol: ',num2str(iProtocol)]);
+%disp(['iProtocol: ',num2str(iProtocol)]);
 
 if ~isempty(iProtocol)
     % Delete existing protocol
     disp(['- Delete protocol']);
     gui_brainstorm('DeleteProtocol', ProtocolName);
-    % Select the current procotol
-    % gui_brainstorm('SetCurrentProtocol', iProtocol);
 end
 
 % Create new protocol
@@ -85,9 +80,6 @@ disp(['- Create new protocol']);
 UseDefaultAnat = 1; 
 UseDefaultChannel = 0;
 gui_brainstorm('CreateProtocol', ProtocolName, UseDefaultAnat, UseDefaultChannel);
-
-
-disp(['Protocol created!']);
 
 
 %% ==== 1) Import MEG files =======================================
@@ -99,9 +91,6 @@ bst_report('Start');
 
 
 % ** CTF **
-%
-% Path to the data
-% sFilesMEG = fullfile(config.ctf);
 %
 % % % Process: Create link to raw file    
 % % sFiles = bst_process('CallProcess', 'process_import_data_raw', ...
@@ -119,9 +108,6 @@ bst_report('Start');
 % % 
 
 % ** FIF **
-
-% Path to the data
-sFilesMEG = fullfile(config.fif);
 
 % Process: Create link to raw file    
 sFiles = bst_process('CallProcess', 'process_import_data_raw', ...
@@ -258,9 +244,22 @@ bst_report('Export', ReportFile, ReportsDir);
 
 % Save data
 disp(['5) Save data']);
-disp(['db dir: ',BrainstormDbDir]);
 
+
+%% Delete current protocol
+% Move brainstorm_db data
 movefile([BrainstormDbDir,'/',ProtocolName], DataDir);
+% Delete bst protocol (in .brainstorm/brainstorm.mat file)
+
+% iProtocol = bst_get('Protocol', ProtocolName);
+% iProtocol = bst_get('iProtocol');
+
+% if ~isempty(iProtocol)
+    % Delete existing protocol
+    disp(['- Delete protocol']);
+    gui_brainstorm('DeleteProtocol', ProtocolName);
+% end
+
 
 %% DONE
 disp(['** Done!']);
