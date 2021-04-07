@@ -26,7 +26,7 @@ config = jsondecode(fileread('config.json'));
 % Path to the data
 sFilesMEG = fullfile(config.fif);
 
-ProtocolName = 'Protocol02'; % Needs to be a valid folder name (no spaces, no weird characters, etc)
+ProtocolName = 'Protocol01'; % Needs to be a valid folder name (no spaces, no weird characters, etc)
 SubjectName = 'Subject01';
 
 % NOTCH FILTER
@@ -248,7 +248,7 @@ disp(['5) Save data']);
 
 %% Delete current protocol
 % Move brainstorm_db data
-movefile([BrainstormDbDir,'/',ProtocolName], DataDir);
+copyfile([BrainstormDbDir,'/',ProtocolName], DataDir);
 % Delete bst protocol (in .brainstorm/brainstorm.mat file)
 
 % iProtocol = bst_get('Protocol', ProtocolName);
