@@ -10,7 +10,7 @@
 %
 % Indiana University
 
-clc; close all; clear;
+%clc; close all; clear;
 
 disp(['0) My script has started']);
 
@@ -21,15 +21,6 @@ config = jsondecode(fileread('config.json'));
 
 %% Some paths
 
-<<<<<<< Updated upstream
-% Directory with the segmented anatomy (e.g. freesufer output)
-%AnatDir1 = [fullfile(config.output)];
-%disp(AnatDir1)
-%AnatDir = [fullfile(config.freesurfer)];
-%disp(AnatDir)
-
-=======
->>>>>>> Stashed changes
 % Directory to store results
 ReportsDir = 'out_dir/';
 DataDir    = 'out_data/';
@@ -38,8 +29,21 @@ DataDir    = 'out_data/';
 BrainstormDbDir = [pwd, '/brainstorm_db/']; % Full path
 
 %% Parameters
+
 ProtocolName = 'Protocol01'; % The protocol name has to be a valid folder name (no spaces, no weird characters...)
 SubjectName = 'Subject01';
+
+% Frequencies to filter with the noth (power line 60Hz and harmonics)
+freqs_notch = [60:60:60];
+
+% Filters
+highpass = 0.3;
+lowpass = 0; % 0: no filter
+
+% Window length and overlap for PSD Welch method
+win_length = 10; % sec 2
+win_overlap = 0; % percentage 50
+
 
 %% START BRAINSTORM
 disp(['1) Brainstorm should be started on server mode']);
@@ -79,24 +83,6 @@ bst_colormaps('RestoreDefaults', 'meg');
 
 disp(['Protocol created!']);
 
-%% Parameters
-
-% Frequencies to filter with the noth (power line 60Hz and harmonics)
-freqs_notch = [60:60:600];
-
-% Filters
-highpass = 0.3;
-lowpass = 0; % 0: no filter
-
-% Window length and overlap for PSD Welch method
-win_length = 10; % sec 2
-win_overlap = 0; % percentage 50
-
-<<<<<<< Updated upstream
-sFilesMEG = fullfile(config.fif);
-% =========================================================================
-=======
->>>>>>> Stashed changes
 
 %% ==== 1) Import MEG files =======================================
 disp(['1) Import MEG file']);
