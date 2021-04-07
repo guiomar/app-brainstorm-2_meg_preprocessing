@@ -2,3 +2,6 @@
 *.m~
 *.json~
 *.DS_Store
+out_data/
+out_dir/
+brainstorm3.*
