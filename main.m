@@ -56,10 +56,10 @@ bst_colormaps('RestoreDefaults', 'meg');
 
 %%%%%%%%
 % See Tutorial 1
-disp(['BrainstormDbDir:', bst_get('BrainstormDbDir')]);
-disp(['BrainstormUserDir:', bst_get('BrainstormUserDir')]); % HOME/.brainstom (operating system)
-disp(['HOME env:', getenv('HOME')]);
-disp(['HOME java:', char(java.lang.System.getProperty('user.home'))]);
+disp(['- BrainstormDbDir:', bst_get('BrainstormDbDir')]);
+disp(['- BrainstormUserDir:', bst_get('BrainstormUserDir')]); % HOME/.brainstom (operating system)
+disp(['- HOME env:', getenv('HOME')]);
+disp(['- HOME java:', char(java.lang.System.getProperty('user.home'))]);
 %%%%%%%%
 
 
@@ -125,6 +125,7 @@ sFiles = bst_process('CallProcess', 'process_import_data_raw', ...
 
 disp(['1) Create snapshot MEG data']);
 
+disp(['sFiles: ', sFiles.FileName])
 % ** Process: Snapshot: Sensors/MRI registration
 bst_process('CallProcess', 'process_snapshot', ...
     sFiles, [], ...
@@ -142,6 +143,7 @@ bst_process('CallProcess', 'process_snapshot', ...
 
 disp(['2) PSD on sensors']);
 
+disp(['sFiles: ', sFiles.FileName])
 % Process: Power spectrum density (Welch)
 sFilesPSDpre = bst_process('CallProcess', 'process_psd', ...
     sFiles, [], ...
@@ -177,6 +179,7 @@ bst_process('CallProcess', 'process_snapshot', ...
 
 disp(['3) Filtering']);
 
+disp(['sFiles: ', sFiles.FileName])
 % Process: Notch filter: 
 sFilesNotch = bst_process('CallProcess', 'process_notch', ...
     sFiles, [], ...
