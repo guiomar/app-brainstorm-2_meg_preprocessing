@@ -167,9 +167,6 @@ bst_process('CallProcess', 'process_snapshot', ...
 
 disp('3) Filtering');
 
-disp(['sFiles: ', sFiles.FileName])
-b=importdata([BrainstormDbDir,ProtocolName,'/data/',sFiles.FileName]);
-disp(b.F.filename)
 % Process: Notch filter: 
 sFilesNotch = bst_process('CallProcess', 'process_notch', ...
     sFiles, [], ...
