@@ -265,8 +265,8 @@ disp('6) Save data');
 copyfile([BrainstormDbDir,'/',ProtocolName], DataDir);
 % Delete bst protocol (in .brainstorm/brainstorm.mat file)
 % Delete existing protocol
-disp('- Delete protocol');
-gui_brainstorm('DeleteProtocol', ProtocolName);
+% disp('- Delete protocol');
+% gui_brainstorm('DeleteProtocol', ProtocolName);
 
 
 %% DONE
