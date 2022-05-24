@@ -19,4 +19,4 @@ mkdir -p home
 # ./brainstorm3.command /Applications/MATLAB_R2018b.app/bin/matlab main.m local
 
 # singularity run -e docker://brainlife/brainstorm:3_210303 main.m local
-singularity exec --bind `pwd`/home:/home/$USER docker://brainlife/brainstorm:3_210303 main.m local
+singularity run -e --bind `pwd`/home:/home/$USER docker://brainlife/brainstorm:3_210303 main.m local
