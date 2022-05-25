@@ -132,6 +132,10 @@ bst_process('CallProcess', 'process_snapshot', ...
 
 disp('2) PSD on sensors');
 
+disp(['sFiles: ', sFiles.FileName])
+a=importdata([BrainstormDbDir,ProtocolName,'/data/',sFiles.FileName]);
+disp(a.F.filename)
+
 % Process: Power spectrum density (Welch)
 sFilesPSDpre = bst_process('CallProcess', 'process_psd', ...
     sFiles, [], ...
@@ -166,6 +170,10 @@ bst_process('CallProcess', 'process_snapshot', ...
 %% ==== 3)  Notch filter + High pass (0.3 Hz) =====================
 
 disp('3) Filtering');
+
+disp(['sFiles: ', sFiles.FileName])
+b=importdata([BrainstormDbDir,ProtocolName,'/data/',sFiles.FileName]);
+disp(b.F.filename)
 
 % Process: Notch filter: 
 sFilesNotch = bst_process('CallProcess', 'process_notch', ...
