@@ -98,7 +98,6 @@ bst_report('Start');
 
 % Path to the data
 sFilesMEG = fullfile(config_data.fif);
-% sFilesMEG ='/Users/guiomar/Downloads/62879df283f1eb5e7a975b19.62879df283f1eb5e7a975b1e.61a6c391dcf55506bcb75344/meg.fif';
 
 % Process: Create link to raw file    
 sFiles = bst_process('CallProcess', 'process_import_data_raw', ...
