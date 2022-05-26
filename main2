@@ -8,9 +8,6 @@
 #
 # Author: Guiomar Niso
 
-mkdir -p out_dir
-mkdir -p out_data
-mkdir -p home
 
 # 1) Run code local - Matlab interpreter
 #/Applications/MATLAB_R2022a.app/bin/matlab -nodisplay -r main
