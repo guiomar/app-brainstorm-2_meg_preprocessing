@@ -59,7 +59,7 @@ gui_brainstorm('CreateProtocol', ProtocolName, UseDefaultAnat, UseDefaultChannel
 disp('- New protocol created');
 
 %% ==== 1) Import MEG files =======================================
-disp('1) Import MEG file');
+disp('== 1) Import MEG file');
 
 sFiles0 = [];
 % Start a new report
@@ -76,7 +76,7 @@ sFiles = bst_process('CallProcess', 'process_import_data_raw', ...
 
 %% ==== 2) PSD on sensors (before filtering) ======================
 
-disp('2) PSD on sensors');
+disp('== 2) PSD on sensors');
 
 % Process: Power spectrum density (Welch)
 sFilesPSDpre = bst_process('CallProcess', 'process_psd', ...
@@ -97,7 +97,7 @@ sFilesPSDpre = bst_process('CallProcess', 'process_psd', ...
 
 %% ==== 3)  Notch filter =====================
 
-disp('3) Notch');
+disp('== 3) Notch');
 
 % Process: Notch filter: 
 sFilesNotch = bst_process('CallProcess', 'process_notch', ...
@@ -106,8 +106,10 @@ sFilesNotch = bst_process('CallProcess', 'process_notch', ...
     'sensortypes', 'MEG, EEG', ...
     'read_all', 0); 
 
-%% ==== 3)  High pass filter =====================
- 
+%% ==== 4)  High pass filter =====================
+
+disp('== 4) Highpass');
+
 % Process: High-pass:
 sFiles = bst_process('CallProcess', 'process_bandpass', ...
     sFiles, [], ...
@@ -117,15 +119,15 @@ sFiles = bst_process('CallProcess', 'process_bandpass', ...
     'sensortypes', 'MEG, EEG', ...
     'read_all', 0);
 
-%% SAVE RESULTS
+%% Save Report and delete protocol
 
 % Save report
-disp('5) Save report');
+disp('== Save report');
 ReportFile = bst_report('Save', []);
 
 % Delete existing protocol
 gui_brainstorm('DeleteProtocol', ProtocolName);
-disp('- Delete protocol');
+disp('== Delete protocol');
 
 
 %% DONE
