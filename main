@@ -12,11 +12,13 @@ mkdir -p out_dir
 mkdir -p out_data
 mkdir -p home
 
-# 1) Run code local - Matlab interpreter
-#/Applications/MATLAB_R2022a.app/bin/matlab -nodisplay -r main
-
-# 2) Run code local - Matlab MCR (WORKS!)
+# 1) Run code local - Matlab MCR (WORKS!)
 #/Users/guiomar/Documents/SOFTWARE/brainstorm3/bin/R2020a/brainstorm3.command /Applications/MATLAB/MATLAB_Runtime/v98 main2.m local
 
-# Run code singularity
+# 2) Run code singularity
 singularity run -e --bind `pwd`/home:/home/$USER docker://brainlife/brainstorm:220526 main2.m local
+
+
+
+# Run code local - Matlab interpreter
+#/Applications/MATLAB_R2022a.app/bin/matlab -nodisplay -r main
