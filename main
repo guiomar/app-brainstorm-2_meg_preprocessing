@@ -16,7 +16,7 @@ mkdir -p home
 #/Applications/MATLAB_R2022a.app/bin/matlab -nodisplay -r main
 
 # 2) Run code local - Matlab MCR (WORKS!)
-#/Users/guiomar/Documents/SOFTWARE/brainstorm3/bin/R2020a/brainstorm3.command /Applications/MATLAB/MATLAB_Runtime/v98 main.m local
+#/Users/guiomar/Documents/SOFTWARE/brainstorm3/bin/R2020a/brainstorm3.command /Applications/MATLAB/MATLAB_Runtime/v98 main2.m local
 
 # Run code singularity
-#singularity run -e --bind `pwd`/home:/home/$USER docker://brainlife/brainstorm:220526 main.m local
+singularity run -e --bind `pwd`/home:/home/$USER docker://brainlife/brainstorm:220526 main2.m local
