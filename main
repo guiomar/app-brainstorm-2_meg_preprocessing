@@ -13,15 +13,10 @@ mkdir -p out_data
 mkdir -p home
 
 # 1) Run code local - Matlab interpreter
-# matlab -nodisplay -r main
+#/Applications/MATLAB_R2022a.app/bin/matlab -nodisplay -r main
 
-# 2) Run code local - Matlab MCR
-#/Users/guiomar/Documents/SOFTWARE/brainstorm3/bin/R2020a/brainstorm3.command /Applications/MATLAB_R2022a.app/bin/matlab main.m local
+# 2) Run code local - Matlab MCR (WORKS!)
+#/Users/guiomar/Documents/SOFTWARE/brainstorm3/bin/R2020a/brainstorm3.command /Applications/MATLAB/MATLAB_Runtime/v98 main.m local
 
 # Run code singularity
-singularity run -e --bind `pwd`/home:/home/$USER docker://brainlife/brainstorm:220526 main.m local
-
-
-#./brainstorm3.command /usr/local/MATLAB/MATLAB_Runtime/v98/ main.m
-#./brainstorm3.command /Applications/MATLAB_R2020a.app/bin/matlab main.m local
-# /Users/guiomar/Documents/SOFTWARE/brainstorm3/bin/R2020a/brainstorm3.command /Applications/MATLAB_R2022a.app/bin/matlab main.m local
+#singularity run -e --bind `pwd`/home:/home/$USER docker://brainlife/brainstorm:220526 main.m local
