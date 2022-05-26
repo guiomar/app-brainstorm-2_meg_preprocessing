@@ -15,7 +15,7 @@ ReportsDir = pwd;
 config_data = jsondecode(fileread('config.json'));
 sFilesMEG = fullfile(config_data.fif);
 
-ProtocolName = 'Protocol02'; % Needs to be a valid folder name (no spaces, no weird characters, etc)
+ProtocolName = 'Protocol01'; % Needs to be a valid folder name (no spaces, no weird characters, etc)
 SubjectName = 'Subject01';
 
 % NOTCH FILTER
