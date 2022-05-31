@@ -5,7 +5,8 @@ disp('0) My script has started');
 %% Key paths
 % Directory to store brainstorm database
 BrainstormDbDir = [pwd, '/brainstorm_db/']; % Full path
-ReportsDir = pwd;
+ReportsDir = 'out_dir/';
+DataDir    = 'out_data/';
 
 %% Parameters
 % % Path to the data
@@ -126,6 +127,9 @@ sFiles = bst_process('CallProcess', 'process_bandpass', ...
 disp('== Save report');
 ReportFile = bst_report('Save', []);
 bst_report('Export', ReportFile, ReportsDir);
+
+% Copy brainstorm_db data
+copyfile([BrainstormDbDir,'/',ProtocolName], DataDir);
 
 % Delete existing protocol
 gui_brainstorm('DeleteProtocol', ProtocolName);
